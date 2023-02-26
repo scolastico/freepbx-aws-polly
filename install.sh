@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ ! -f /etc/sangoma-release ]; then
   echo "Sorry, this script is only for the Sangoma OS (Free PBX distro)."
   echo "To develop or run this script on other distros, please see"
@@ -15,8 +17,7 @@ cd aws-nodejs
 
 git pull
 
-npm install -g pnpm
-pnpm i
+npm i
 
 if [ ! -f config.json ]; then
   cp config.example.json config.json

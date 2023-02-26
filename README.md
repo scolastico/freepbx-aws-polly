@@ -69,9 +69,8 @@ You need to install the following packages:
 sudo apt install nodejs npm lame
 ```
 
-Then install pnpm and the dependencies:
+Then install the dependencies:
 ```bash
-npm install -g pnpm
 pnpm install
 ```
 
