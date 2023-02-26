@@ -1,0 +1,13 @@
+{
+  "name": "freepbx-aws-polly",
+  "type": "module",
+  "scripts": {
+    "test:de": "node polly.js --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
+    "test:en": "node polly.js --text '!en Hello World! I am a speech output!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
+    "test": "npm run test:de"
+  },
+  "dependencies": {
+    "@aws-sdk/client-polly": "^3.279.0",
+    "minimist": "^1.2.8"
+  }
+}
