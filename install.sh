@@ -23,6 +23,10 @@ if [ ! -f config.json ]; then
   cp config.example.json config.json
 fi
 
+rm polly.js
+cp dist/polly.js polly.js
+chmod +x polly.js
+
 echo ""
 echo "Installation complete. Please edit config.json."
 echo "Don't forget to add tts engine to FreePBX."
