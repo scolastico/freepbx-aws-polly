@@ -66,7 +66,7 @@ const main = async () => {
     return;
   }
 
-  if (!text || !mp3 || !wav) throw new Error('Missing arguments.');
+  if (!args.text || !args.mp3 || !args.wav) throw new Error('Missing arguments.');
 
   console.log('Loading config...');
   const config = await loadConfig();
