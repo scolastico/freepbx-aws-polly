@@ -4,7 +4,7 @@ import { existsSync } from 'fs';
 import { spawn } from 'child_process';
 import minimist from 'minimist';
 import createConfig from './installation.js';
-import defaultConfig from './config.json';
+import defaultConfig from './defaultConfig.json';
 
 const loadConfig = async () => {
   if (!existsSync('./config.json')) {
