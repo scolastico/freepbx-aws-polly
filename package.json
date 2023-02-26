@@ -1,25 +1,29 @@
 {
   "name": "freepbx-aws-polly",
   "type": "module",
+  "bin": "dist/bundle.cjs",
   "scripts": {
-    "build:pack": "webpack --config webpack.config.js",
-    "build:transform": "babel dist/bundle.cjs --out-file-extension .cjs --out-file dist/polly.cjs",
-    "build": "npm run build:pack && npm run build:transform",
+    "build:bundle": "webpack --config webpack.config.js",
+    "build:package": "pkg package.json --compress gzip",
+    "build": "npm run build:bundle && npm run build:package",
     "test:de": "node dist/polly.cjs --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
     "test:en": "node dist/polly.cjs --text '!en Hello World! I am a speech output!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
     "test": "npm run test:de"
   },
+  "pkg": {
+    "targets": [
+      "node16-linux-x64",
+      "node16-linux-arm64"
+    ],
+    "outputPath": "dist/pkg"
+  },
   "dependencies": {
     "@aws-sdk/client-polly": "^3.279.0",
-    "@babel/runtime-corejs3": "^7.21.0",
+    "inquirer": "^9.1.4",
     "minimist": "^1.2.8"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
-    "@babel/plugin-transform-runtime": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
+    "pkg": "^5.8.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   }

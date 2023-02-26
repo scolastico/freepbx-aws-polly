@@ -1,0 +1,32 @@
+name: Build and Upload
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm i
+
+    - name: Build
+      run: pnpm build
+
+    - name: Upload asset
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
+        retention-days: 7
+      if: always()
