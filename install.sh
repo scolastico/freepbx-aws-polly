@@ -9,7 +9,7 @@ fi
 
 cd /opt
 if [ ! -d aws-nodejs ]; then
-  git clone https://github.com/scolstico/freepbx-aws-polly.git aws-nodejs
+  git clone https://github.com/scolastico/freepbx-aws-polly.git aws-nodejs
 fi
 cd aws-nodejs
 
