@@ -31,28 +31,8 @@ jobs:
         retention-days: 7
       if: always()
 
-    - name: Move Release Assets
-      if: github.event_name == 'release'
-      run: |
-        mv dist/pkg/freepbx-aws-polly-arm64 ./
-        mv dist/pkg/freepbx-aws-polly-x64 ./
-
-    - name: Upload Release Asset arm64
-      uses: svenstaro/upload-release-action@v2
-      if: github.event_name == 'release'
+    - name: Upload release assets
+      uses: AButler/upload-release-assets@v2.0
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: freepbx-aws-polly-arm64
-        asset_name: freepbx-aws-polly-arm64
-        tag: ${{ github.ref }}
-        overwrite: true
-
-    - name: Upload Release Asset x64
-      uses: svenstaro/upload-release-action@v2
-      if: github.event_name == 'release'
-      with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: freepbx-aws-polly-x64
-          asset_name: freepbx-aws-polly-x64
-          tag: ${{ github.ref }}
-          overwrite: true
+        files: 'dist/pkg/*'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
