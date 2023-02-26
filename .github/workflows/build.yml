@@ -32,19 +32,21 @@ jobs:
       if: always()
 
     - name: Upload Release Asset arm64
-      uses: actions/upload-release-asset@v1.0.1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/pkg/freepbx-aws-polly-arm64
-        asset_name: freepbx-aws-polly-arm64
-        asset_content_type: application/octet-stream
+      uses: svenstaro/upload-release-action@v2
       if: github.event_name == 'release'
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/pkg/freepbx-aws-polly-arm64
+        asset_name: freepbx-aws-polly-arm64
+        tag: ${{ github.ref }}
+        overwrite: true
 
     - name: Upload Release Asset x64
-      uses: actions/upload-release-asset@v1.0.1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/pkg/freepbx-aws-polly-x64
-        asset_name: freepbx-aws-polly-x64
-        asset_content_type: application/octet-stream
+      uses: svenstaro/upload-release-action@v2
       if: github.event_name == 'release'
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/pkg/freepbx-aws-polly-x64
+          asset_name: freepbx-aws-polly-x64
+          tag: ${{ github.ref }}
+          overwrite: true
