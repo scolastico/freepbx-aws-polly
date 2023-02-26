@@ -38,7 +38,7 @@ jobs:
         asset_path: dist/pkg/freepbx-aws-polly-arm64
         asset_name: freepbx-aws-polly-arm64
         asset_content_type: application/octet-stream
-      if: github.event_name == 'release' && contains(github.event.release.tag_name, 'v')
+      if: github.event_name == 'release'
 
     - name: Upload Release Asset x64
       uses: actions/upload-release-asset@v1.0.1
@@ -47,4 +47,4 @@ jobs:
         asset_path: dist/pkg/freepbx-aws-polly-x64
         asset_name: freepbx-aws-polly-x64
         asset_content_type: application/octet-stream
-      if: github.event_name == 'release' && contains(github.event.release.tag_name, 'v')
+      if: github.event_name == 'release'
