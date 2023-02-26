@@ -4,8 +4,11 @@
 [![badge](https://img.shields.io/github/issues/scolastico/freepbx-aws-polly)](https://github.com/scolastico/freepbx-aws-polly/issues)
 
 ## About
-This is a FreePBX TTS Engine for AWS Polly. It is based on the [FreePBX TTS Engine](https://www.thewebmachine.net/wiki/freepbx-general/installing-aws-polly-tts-better-picotts-alternative) from [The Web Machine](https://www.thewebmachine.net/).
-I updated the code to work with the aws sdk v3 (as v2 is no longer supported) and added some features.
+This is a FreePBX TTS Engine for AWS Polly. It is based on the
+[FreePBX TTS Engine](https://www.thewebmachine.net/wiki/freepbx-general/installing-aws-polly-tts-better-picotts-alternative) from [The Web Machine](https://www.thewebmachine.net/).
+I updated the code to work with the aws sdk v3 (as v2 is no
+longer supported), packaged it with a 'new' version of nodejs
+(16) and add some new features.
 
 ## Features
 - [x] AWS Polly TTS Engine
@@ -20,11 +23,13 @@ curl -s https://raw.githubusercontent.com/scolastico/freepbx-aws-polly/main/inst
 ```
 
 ## Configuration
-After the installation you can configure the `/opt/aws-nodejs/config.json` file.
+After the installation you can configure the
+`/opt/aws-nodejs/config.json` file.
 
 You can find the available voices [here](https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
 
-You should create a IAM user with the following permissions:
+You should create a IAM user with the following
+permissions:
 ```json
 {
     "Version": "2012-10-17",
@@ -44,7 +49,8 @@ You should create a IAM user with the following permissions:
 ```
 
 ## FreePBX Configuration
-After the installation you can configure the TTS Engine in the FreePBX GUI.
+After the installation you can configure the TTS Engine
+in the FreePBX GUI.
 
 Settings -> Text to Speech Engines -> Add TTS Engine
 
@@ -79,7 +85,11 @@ This project is licensed under the **Apache License 2.0**.
 
 ### About
 Apache-2.0
-A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+A permissive license whose main conditions require preservation
+of copyright and license notices. Contributors provide an express
+grant of patent rights. Licensed works, modifications, and larger
+works may be distributed under different terms and without source
+code.
 
 ### What you can do
 | Permissions                                                                                                                       | Conditions                                                                                                                                                   | Limitations                                                                                                                                                                                                                      |

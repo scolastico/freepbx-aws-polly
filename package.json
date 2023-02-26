@@ -6,9 +6,10 @@
     "build:bundle": "webpack --config webpack.config.js",
     "build:package": "pkg package.json --compress gzip",
     "build": "npm run build:bundle && npm run build:package",
-    "test:de": "node dist/polly.cjs --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
-    "test:en": "node dist/polly.cjs --text '!en Hello World! I am a speech output!' --mp3 'hello-world.mp3' --wav 'hello-world.wav'",
-    "test": "npm run test:de"
+    "test:de": "node dist/bundle.cjs --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'dist/hallo-welt.mp3' --wav 'dist/hallo-welt.wav'",
+    "test:en": "node dist/bundle.cjs --text '!en Hello World! I am a speech output!' --mp3 'dist/hello-world.mp3' --wav 'dist/hello-world.wav'",
+    "test:pkg": "dist/pkg/freepbx-aws-polly-x64 --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'dist/pkg-welt.mp3' --wav 'dist/pkg-welt.wav'",
+    "test": "npm run test:de && npm run test:en && npm run test:pkg"
   },
   "pkg": {
     "targets": [

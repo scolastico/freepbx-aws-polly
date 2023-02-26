@@ -2,21 +2,43 @@ import { PollyClient, SynthesizeSpeechCommand } from '@aws-sdk/client-polly';
 import { readFile, writeFile, rm } from 'fs/promises';
 import { existsSync } from 'fs';
 import { spawn } from 'child_process';
+import path from 'path';
 import minimist from 'minimist';
 import createConfig from './installation.js';
 import defaultConfig from './defaultConfig.json';
 
 const loadConfig = async () => {
-  if (!existsSync('./config.json')) {
-    await writeFile('./config.json', JSON.stringify(defaultConfig, null, 2));
+  const output = await new Promise((resolve) => {
+    const subprocess = spawn('dirname', [process.argv[1]]);
+    subprocess.stdout.on('data', (output) => {
+      const stdout = output.toString().trim();
+      if (stdout.includes('/snapshot/')) {
+        resolve({ isSnapshot: true });
+      } else {
+        resolve({ isSnapshot: false, scriptDir: stdout });
+      }
+    });
+    subprocess.on('error', (error) => resolve({ isSnapshot: true }));
+  });
+
+  let scriptDir;
+  if (output.isSnapshot) {
+    scriptDir = path.dirname(process.argv[0]);
+  } else {
+    scriptDir = output.scriptDir;
+  }
+
+  const configPath = path.join(scriptDir, 'config.json')
+  if (!existsSync(configPath)) {
+    await writeFile(configPath, JSON.stringify(defaultConfig, null, 2));
     throw new Error('The config file was created. Please fill it out and restart the program.');
   }
-  return JSON.parse(await readFile('./config.json', 'utf8'));
+  return JSON.parse(await readFile(configPath, 'utf8'));
 };
 
 const synthesizeSpeech = async ({ text, mp3, wav, voiceId, languageCode, engine, awsConfig }) => {
   console.log('Starting speech synthesis...');
-  console.log(JSON.stringify({ text, mp3, wav, voiceId, languageCode, engine, awsConfig }));
+  console.log(JSON.stringify({ text, mp3, wav, voiceId, languageCode, engine, region: awsConfig.region }).replaceAll('"', "'"));
   const polly = new PollyClient(awsConfig);
 
   const command = new SynthesizeSpeechCommand({
@@ -92,8 +114,8 @@ const main = async () => {
   const preset = config.presets[language];
 
   const text = config.prefix + (args.text.startsWith('!') ? args.text.slice(language.length + 1) : args.text) + config.suffix;
-  const mp3 = args.mp3;
-  const wav = args.wav;
+  const mp3 = args.mp3.endsWith('.mp3') ? args.mp3 : (args.mp3 + '.mp3');
+  const wav = args.wav.endsWith('.wav') ? args.wav : (args.wav + '.wav');
 
   await synthesizeSpeech({
     text,
