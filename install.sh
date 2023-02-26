@@ -43,8 +43,9 @@ mkdir -p /opt/scolastico
 mkdir -p /opt/scolastico/freepbx-aws-polly
 cd /opt/scolastico/freepbx-aws-polly
 
+FILE_NAME="freepbx-aws-polly-$ARCH"
 LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/scolastico/freepbx-aws-polly/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
-DOWNLOAD_URL="https://github.com/scolastico/freepbx-aws-polly/releases/download/$LATEST_RELEASE/freepbx-aws-polly-$ARCH"
+DOWNLOAD_URL="https://github.com/scolastico/freepbx-aws-polly/releases/download/$LATEST_RELEASE/$FILE_NAME"
 curl -O $DOWNLOAD_URL
 
 if [ $? -ne 0 ]; then
