@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm i
+
+    - name: Build
+      run: pnpm build
+
+    - name: Create release
+      uses: d1ceward/draft-assets-release-action@v2
+      if: startsWith(github.event.head_commit.message, 'v')
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          dist/pkg/freepbx-aws-polly-x64
+          dist/pkg/freepbx-aws-polly-arm64
