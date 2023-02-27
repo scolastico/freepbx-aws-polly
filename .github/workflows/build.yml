@@ -3,8 +3,6 @@ name: Build and Upload
 on:
   push:
     branches: [main]
-  release:
-    types: [created]
 
 jobs:
   build_and_upload:
@@ -33,22 +31,10 @@ jobs:
         retention-days: 7
       if: always()
 
-    - name: Upload x64 release asset
-      if: github.event_name == 'release'
-      uses: svenstaro/upload-release-action@v2
+    - uses: d1ceward/draft-assets-release-action@v2
+      if: startsWith(github.event.head_commit.message, 'v')
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: dist/pkg/freepbx-aws-polly-x64
-        asset_name: freepbx-aws-polly-x64
-        tag: ${{ github.ref }}
-        overwrite: true
-
-    - name: Upload arm64 release asset
-      if: github.event_name == 'release'
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: dist/pkg/freepbx-aws-polly-arm64
-        asset_name: freepbx-aws-polly-arm64
-        tag: ${{ github.ref }}
-        overwrite: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          dist/pkg/freepbx-aws-polly-x64
+          dist/pkg/freepbx-aws-polly-arm64
