@@ -121,6 +121,8 @@ const main = async () => {
     text = text.replaceAll(key, config.replace[key]);
   }
 
+  text = config.prefix + text + config.suffix;
+
   await synthesizeSpeech({
     text,
     mp3,
