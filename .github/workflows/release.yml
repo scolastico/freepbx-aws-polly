@@ -22,14 +22,7 @@ jobs:
     - name: Build
       run: pnpm build
 
-    - name: Upload x64 asset
-      uses: shogo82148/actions-upload-release-asset@v1
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: dist/pkg/freepbx-aws-polly-x64
-
-    - name: Upload arm64 asset
-      uses: shogo82148/actions-upload-release-asset@v1
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: dist/pkg/freepbx-aws-polly-arm64
+    - name: Upload assets
+      run: |
+        gh release upload "${{ github.event.release.tag_name }}" dist/pkg/dist/pkg/freepbx-aws-polly-x64
+        gh release upload "${{ github.event.release.tag_name }}" dist/pkg/dist/pkg/freepbx-aws-polly-arm64
