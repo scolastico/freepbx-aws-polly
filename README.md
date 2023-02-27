@@ -8,7 +8,7 @@ This is a FreePBX TTS Engine for AWS Polly. It is based on the
 [FreePBX TTS Engine](https://www.thewebmachine.net/wiki/freepbx-general/installing-aws-polly-tts-better-picotts-alternative) from [The Web Machine](https://www.thewebmachine.net/).
 I updated the code to work with the aws sdk v3 (as v2 is no
 longer supported), packaged it with a 'new' version of nodejs
-(16) and add some new features.
+(16) and added some new features.
 
 ### Joust want to use it?
 See the **step-by-step guide** in the **[wiki](https://github.com/scolastico/freepbx-aws-polly/wiki)**.
@@ -107,4 +107,4 @@ code.
 
 *Information provided by https://choosealicense.com/licenses/apache-2.0/*
 
-Read more [here](https://github.com/{user_name}/{repo_name}/blob/main/LICENSE).
+Read more [here](https://github.com/scolastico/freepbx-aws-polly/blob/main/LICENSE).
