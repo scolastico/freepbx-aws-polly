@@ -23,6 +23,8 @@ jobs:
       run: pnpm build
 
     - name: Upload assets
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
         gh release upload "${{ github.event.release.tag_name }}" dist/pkg/dist/pkg/freepbx-aws-polly-x64
         gh release upload "${{ github.event.release.tag_name }}" dist/pkg/dist/pkg/freepbx-aws-polly-arm64
