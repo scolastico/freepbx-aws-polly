@@ -61,6 +61,9 @@ export default async function configure() {
     },
   ]);
 
+  if (!prefixSuffix.changePrefix) prefixSuffix.prefix = '<speak><break time="2s"/>';
+  if (!prefixSuffix.changeSuffix) prefixSuffix.suffix = '</speak>';
+
   const presets = {};
   let defaultLanguage;
 

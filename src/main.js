@@ -113,9 +113,13 @@ const main = async () => {
   console.log(`Using language/preset ${language}...`);
   const preset = config.presets[language];
 
-  const text = config.prefix + (args.text.startsWith('!') ? args.text.slice(language.length + 1) : args.text) + config.suffix;
+  let text = args.text.startsWith('!') ? args.text.slice(language.length + 1) : args.text
   const mp3 = args.mp3.endsWith('.mp3') ? args.mp3 : (args.mp3 + '.mp3');
   const wav = args.wav.endsWith('.wav') ? args.wav : (args.wav + '.wav');
+
+  for (const key of Object.keys(config.replace)) {
+    text = text.replaceAll(key, config.replace[key]);
+  }
 
   await synthesizeSpeech({
     text,

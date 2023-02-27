@@ -10,6 +10,9 @@ I updated the code to work with the aws sdk v3 (as v2 is no
 longer supported), packaged it with a 'new' version of nodejs
 (16) and add some new features.
 
+### Joust want to use it?
+See the **step-by-step guide** in the **[wiki](https://github.com/scolastico/freepbx-aws-polly/wiki)**.
+
 ## Features
 - [x] AWS Polly TTS Engine
 - [x] Multi Language Support
@@ -17,6 +20,8 @@ longer supported), packaged it with a 'new' version of nodejs
 - [x] Prefix and Suffix Support
 
 ## Installation
+*For beginners: see the **step-by-step guide** in the **[wiki](https://github.com/scolastico/freepbx-aws-polly/wiki)**.*
+
 Login to your FreePBX Server and run the following command:
 ```bash
 curl -s https://raw.githubusercontent.com/scolastico/freepbx-aws-polly/main/install.sh | bash
@@ -24,7 +29,7 @@ curl -s https://raw.githubusercontent.com/scolastico/freepbx-aws-polly/main/inst
 
 ## Configuration
 After the installation you can configure the
-`/opt/aws-nodejs/config.json` file.
+`/opt/scolastico/freepbx-aws-polly/config.json` file.
 
 You can find the available voices [here](https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
 

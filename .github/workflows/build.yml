@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_upload:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout code
@@ -31,8 +31,22 @@ jobs:
         retention-days: 7
       if: always()
 
-#    - name: Upload release assets
-#      uses: AButler/upload-release-assets@v2.0
-#      with:
-#        files: 'dist/pkg/*'
-#        repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload x64 release asset
+      if: github.event_name == 'release'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/pkg/freepbx-aws-polly-x64
+        asset_name: freepbx-aws-polly-x64
+        tag: ${{ github.ref }}
+        overwrite: true
+
+    - name: Upload arm64 release asset
+      if: github.event_name == 'release'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/pkg/freepbx-aws-polly-arm64
+        asset_name: freepbx-aws-polly-arm64
+        tag: ${{ github.ref }}
+        overwrite: true
