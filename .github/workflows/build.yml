@@ -25,9 +25,11 @@ jobs:
       run: pnpm build
 
     - name: Creating config
+      env:
+        TEST_CONFIG: ${{ secrets.TEST_CONFIG }}
       run: |
-        printf '%q' "${{ secrets.TEST_CONFIG }}" > dist/config.json
-        printf '%q' "${{ secrets.TEST_CONFIG }}" > dist/pkg/config.json
+        echo "$TEST_CONFIG" > dist/config.json
+        cp dist/config.json dist/pkg/config.json
 
     - name: Run tests
       run: pnpm test
