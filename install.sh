@@ -67,7 +67,7 @@ echo "Installing new version..."
 mv freepbx-aws-polly-$ARCH ./bin
 chmod +x ./bin
 mkdir -p ./logs
-chmod -R 666 ./logs
+chmod -R 777 ./logs
 
 if [ ! -f ./config.json ]; then
   echo "Starting installer..."
