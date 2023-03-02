@@ -44,7 +44,7 @@ export default async () => {
       name: 'prefix',
       message: 'Enter a new prefix:',
       when: (answers) => answers.changePrefix,
-      default: '<speak><break time="2s"/>',
+      default: '<speak>',
     },
     {
       type: 'confirm',
@@ -61,7 +61,7 @@ export default async () => {
     },
   ])
 
-  if (!prefixSuffix.changePrefix) prefixSuffix.prefix = '<speak><break time="2s"/>'
+  if (!prefixSuffix.changePrefix) prefixSuffix.prefix = '<speak>'
   if (!prefixSuffix.changeSuffix) prefixSuffix.suffix = '</speak>'
 
   const presets = {}
@@ -125,7 +125,6 @@ export default async () => {
         name: 'prefix',
         message: 'Enter a new prefix:',
         when: (answers) => answers.setPrefix,
-        default: '<speak><break time="2s"/>',
       },
       {
         type: 'confirm',
@@ -138,7 +137,6 @@ export default async () => {
         name: 'suffix',
         message: 'Enter a new suffix:',
         when: (answers) => answers.setSuffix,
-        default: '</speak>',
       },
     ])
 
