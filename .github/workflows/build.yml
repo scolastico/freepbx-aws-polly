@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: pnpm i
 
+    - name: Install lame
+      run: sudo apt-get install lame -y
+
     - name: Build
       run: pnpm build
 
