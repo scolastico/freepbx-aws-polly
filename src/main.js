@@ -6,7 +6,7 @@ import {spawn} from 'child_process'
 import path from 'path'
 import minimist from 'minimist'
 import createConfig from './installation.js'
-import defaultConfig from './defaultConfig.json' assert {type: 'json'}
+import defaultConfig from './defaultConfig.json'
 
 let logger = {
   info: console.log,
@@ -78,8 +78,9 @@ const main = async () => {
     scriptDir = output.scriptDir
   }
 
-  if (!existsSync(path.join(scriptDir, 'logs')))
+  if (!existsSync(path.join(scriptDir, 'logs'))) {
     await mkdir(path.join(scriptDir, 'logs'))
+  }
 
   logger = createLogger({
     format: format.combine(
@@ -98,8 +99,8 @@ const main = async () => {
       new transports.Console(),
     ],
   })
-  
-  logger.info("'I am now ready!'")
+
+  logger.info('\'I am now ready!\'')
 
   logger.info('Parsing arguments...')
   const args = minimist(process.argv.slice(2), {

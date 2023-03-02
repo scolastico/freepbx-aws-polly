@@ -3,6 +3,7 @@
   "type": "module",
   "bin": "dist/bundle.cjs",
   "scripts": {
+    "start": "npm run build:bundle && node dist/bundle.cjs",
     "build:bundle": "webpack --config webpack.config.js",
     "build:package": "pkg package.json --compress gzip",
     "build": "npm run build:bundle && npm run build:package",
