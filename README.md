@@ -67,11 +67,26 @@ Engine path: `/usr/bin/node`
 ![Installation Image](.github/assets/tts-config.png)
 
 ## Usage
-If you want to use a different voice or language you can use a `!<language>`
-before your text. For example:
+If you want to use a different voice or language you can use a `!<presets as csv>`
+before your text. You can chain multiple presets which will overwrite already set
+variables For example:
 ```bash
 !en Hello World!
 ```
+or
+```bash
+!de,2-seconds-silence Hello World!
+```
+
+## Troubleshooting
+If something does not seem to work, check the log files:
+
+```bash
+tail -f /opt/scolastico/freepbx-aws-polly/logs/combined.log
+```
+
+If this does not help, you are always welcome to open an
+[issue](https://github.com/scolastico/freepbx-aws-polly/issues).
 
 ## Update
 Just run the [installation](#installation) again.

@@ -10,7 +10,7 @@
     "test:en": "node dist/bundle.cjs --text '!en Hello World! I am a speech output!' --mp3 'dist/hello-world.mp3' --wav 'dist/hello-world.wav'",
     "test:pkg": "dist/pkg/freepbx-aws-polly-x64 --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'dist/pkg-welt.mp3' --wav 'dist/pkg-welt.wav'",
     "test:lint": "npm run lint:js",
-    "test": "npm run test:de && npm run test:en && npm run test:pkg",
+    "test": "npm run test:lint && npm run test:de && npm run test:en && npm run test:pkg",
     "lint:js": "eslint --ext .js .",
     "lint:fix": "eslint --ext .js . --fix",
     "lint": "npm run lint:js"

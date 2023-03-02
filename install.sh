@@ -48,6 +48,9 @@ LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/scolastico/freepbx-
 DOWNLOAD_URL="https://github.com/scolastico/freepbx-aws-polly/releases/download/$LATEST_RELEASE/$FILE_NAME"
 curl -L -o $FILE_NAME $DOWNLOAD_URL
 
+rm -f ./version
+echo $LATEST_RELEASE > ./version
+
 if [ $? -ne 0 ]; then
   echo "Error downloading file"
   exit 1
@@ -73,8 +76,11 @@ fi
 
 echo ""
 echo "Installation complete."
+echo""
 echo "Don't forget to add tts engine to FreePBX."
+echo ""
 echo "FreePBX -> Login -> Settings -> Text To Speech Engines ->"
 echo "Add TTS Engine -> Name: polly, Path: /opt/scolastico/freepbx-aws-polly/bin"
+echo ""
 echo "See: https://github.com/scolstico/freepbx-aws-polly#freepbx-configuration"
 echo ""

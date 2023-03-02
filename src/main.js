@@ -1,6 +1,6 @@
 import {PollyClient, SynthesizeSpeechCommand} from '@aws-sdk/client-polly'
 import {createLogger, transports, format} from 'winston'
-import {readFile, writeFile, rm} from 'fs/promises'
+import {readFile, writeFile, rm, mkdir} from 'fs/promises'
 import {existsSync} from 'fs'
 import {spawn} from 'child_process'
 import path from 'path'
@@ -78,7 +78,10 @@ const main = async () => {
     scriptDir = output.scriptDir
   }
 
-  const logger = createLogger({
+  if (!existsSync(path.join(scriptDir, 'logs')))
+    await mkdir(path.join(scriptDir, 'logs'))
+
+  logger = createLogger({
     format: format.combine(
         format.timestamp(),
         format.printf((info) =>
@@ -87,7 +90,7 @@ const main = async () => {
     ),
     transports: [
       new transports.File({
-        filename: 'myapp.log',
+        filename: path.join(scriptDir, 'logs', 'combined.log'),
         maxsize: 1000000,
         maxFiles: 10,
         tailable: true,
@@ -95,14 +98,6 @@ const main = async () => {
       new transports.Console(),
     ],
   })
-  logger.exceptions.handle(
-      new transports.File({
-        filename: 'exceptions.log',
-        maxsize: 1000000,
-        maxFiles: 10,
-        tailable: true,
-      }),
-  )
   
   logger.info("'I am now ready!'")
 
