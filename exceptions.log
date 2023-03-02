@@ -1,8 +1,0 @@
-2023-03-02T01:25:55.392Z error: uncaughtException: The config file was created. Please fill it out and restart the program.
-Error: The config file was created. Please fill it out and restart the program.
-    at /mnt/data/workspace/freepbx-aws-polly/dist/bundle.cjs:2:786176
-    at async /mnt/data/workspace/freepbx-aws-polly/dist/bundle.cjs:2:786045
-2023-03-02T01:27:20.480Z error: uncaughtException: The config file was created. Please fill it out and restart the program.
-Error: The config file was created. Please fill it out and restart the program.
-    at /snapshot/freepbx-aws-polly/dist/bundle.cjs
-    at async /snapshot/freepbx-aws-polly/dist/bundle.cjs
