@@ -17,6 +17,9 @@
       "languageCode": "en-US",
       "voiceId": "Joanna",
       "engine": "standard"
+    },
+    "2-seconds-silence": {
+      "prefix": "<break time=\"2s\"/>"
     }
   },
   "replace": {

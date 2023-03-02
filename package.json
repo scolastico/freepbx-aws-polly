@@ -9,7 +9,11 @@
     "test:de": "node dist/bundle.cjs --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'dist/hallo-welt.mp3' --wav 'dist/hallo-welt.wav'",
     "test:en": "node dist/bundle.cjs --text '!en Hello World! I am a speech output!' --mp3 'dist/hello-world.mp3' --wav 'dist/hello-world.wav'",
     "test:pkg": "dist/pkg/freepbx-aws-polly-x64 --text 'Hallo Welt! Ich bin eine Sprachausgabe!' --mp3 'dist/pkg-welt.mp3' --wav 'dist/pkg-welt.wav'",
-    "test": "npm run test:de && npm run test:en && npm run test:pkg"
+    "test:lint": "npm run lint:js",
+    "test": "npm run test:de && npm run test:en && npm run test:pkg",
+    "lint:js": "eslint --ext .js .",
+    "lint:fix": "eslint --ext .js . --fix",
+    "lint": "npm run lint:js"
   },
   "pkg": {
     "targets": [
@@ -21,9 +25,12 @@
   "dependencies": {
     "@aws-sdk/client-polly": "^3.279.0",
     "inquirer": "^9.1.4",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
+    "eslint": ">=5.16.0",
+    "eslint-config-google": "^0.14.0",
     "pkg": "^5.8.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"

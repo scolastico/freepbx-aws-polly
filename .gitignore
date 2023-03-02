@@ -1,4 +1,4 @@
-config.json
+dist/config.json
 node_modules/
 *.mp3
 *.wav

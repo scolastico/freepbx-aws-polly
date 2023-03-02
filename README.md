@@ -31,6 +31,8 @@ curl -s https://raw.githubusercontent.com/scolastico/freepbx-aws-polly/main/inst
 After the installation you can configure the
 `/opt/scolastico/freepbx-aws-polly/config.json` file.
 
+See the [`defaultConfig.json`](./src/defaultConfig.json) for reference.
+
 You can find the available voices [here](https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
 
 You should create a IAM user with the following
