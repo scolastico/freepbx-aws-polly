@@ -10,7 +10,7 @@ I updated the code to work with the aws sdk v3 (as v2 is no
 longer supported), packaged it with a 'new' version of nodejs
 (16) and added some new features.
 
-### Joust want to use it?
+### Just want to use it?
 See the **step-by-step guide** in the **[wiki](https://github.com/scolastico/freepbx-aws-polly/wiki)**.
 
 ## Features
