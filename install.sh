@@ -18,7 +18,7 @@ if [[ ! $FORCE_INSTALL && ! -f /etc/sangoma-release ]]; then
   echo "Sorry, this script is only for the Sangoma OS (Free PBX distro)."
   echo ""
   echo "If you are a professional and know what you are doing"
-  echo "you can run this script with --fource-install-on-any-os"
+  echo "you can run this script with --force-install-on-any-os"
   echo ""
   echo "If you just like the console and dont know what you are doing"
   echo "and have the feeling to say 'Thats my server, I can do what I want'"
