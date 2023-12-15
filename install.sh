@@ -53,7 +53,7 @@ echo $LATEST_RELEASE > ./version
 
 if [ $? -ne 0 ]; then
   echo "Error downloading file"
-  exit 1
+  exit 3
 fi
 
 echo "Downloaded file: $FILE_NAME"
@@ -78,7 +78,7 @@ fi
 
 echo ""
 echo "Installation complete."
-echo""
+echo ""
 echo "Don't forget to add tts engine to FreePBX."
 echo ""
 echo "FreePBX -> Login -> Settings -> Text To Speech Engines ->"
