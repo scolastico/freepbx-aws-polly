@@ -62,7 +62,7 @@ in the FreePBX GUI.
 Settings -> Text to Speech Engines -> Add TTS Engine
 
 Engine name: `polly`
-Engine path: `/usr/bin/node`
+Engine path: `/opt/scolastico/freepbx-aws-polly/bin`
 
 ![Installation Image](.github/assets/tts-config.png)
 
