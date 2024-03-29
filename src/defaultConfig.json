@@ -6,7 +6,7 @@
   },
   "prefix": "<speak>",
   "suffix": "</speak>",
-  "defaultLanguage": "de",
+  "defaultPreset": "de",
   "presets": {
     "de": {
       "languageCode": "de-DE",

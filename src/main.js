@@ -135,8 +135,9 @@ const main = async () => {
     },
   }
 
-  logger.info('Parsing language...')
-  let language = config.defaultLanguage
+  logger.info('Parsing presets...')
+  let language = config.defaultPreset || config.defaultLanguage
+  if (!language) throw new Error('Missing defaultPreset in config.json')
   let preset = config.presets[language]
   let text = args.text
   if (text.startsWith('!')) {
@@ -149,9 +150,9 @@ const main = async () => {
 
   logger.info(`Using language/preset ${language}...`)
 
-  if (!preset.voiceId) throw new Error(`No voiceId for language ${language}.`)
-  if (!preset.languageCode) throw new Error(`No languageCode for language ${language}.`)
-  if (!preset.engine) throw new Error(`No engine for language ${language}.`)
+  if (!preset.voiceId) throw new Error(`No voiceId for preset ${language}.`)
+  if (!preset.languageCode) throw new Error(`No languageCode for preset ${language}.`)
+  if (!preset.engine) throw new Error(`No engine for preset ${language}.`)
   if (!preset.prefix) preset.prefix = ''
   if (!preset.suffix) preset.suffix = ''
 

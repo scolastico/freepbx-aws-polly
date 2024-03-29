@@ -193,7 +193,7 @@ export default async () => {
     aws,
     prefix: prefixSuffix.prefix,
     suffix: prefixSuffix.suffix,
-    defaultLanguage,
+    defaultPreset: defaultLanguage,
     presets,
     replace: {},
   }
