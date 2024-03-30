@@ -65,9 +65,54 @@ export default async () => {
   if (!prefixSuffix.changeSuffix) prefixSuffix.suffix = '</speak>'
 
   const presets = {}
-  let defaultLanguage
+
+  const defaultPreset = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter a default preset short name:',
+      validate: (input) => /^[a-z0-9-]+$/.test(input),
+    },
+    {
+      type: 'input',
+      name: 'languageCode',
+      message:
+        'Enter the default language code (see https://docs.aws.amazon.com/polly/latest/dg/voicelist.html):',
+    },
+    {
+      type: 'input',
+      name: 'voiceId',
+      message:
+        'Enter the default voice ID (see https://docs.aws.amazon.com/polly/latest/dg/voicelist.html):',
+    },
+    {
+      type: 'list',
+      name: 'engine',
+      message: 'Select the voice engine:',
+      choices: ['standard', 'neural'],
+    }
+  ])
+
+  presets[defaultPreset.name] = {
+    languageCode: defaultPreset.languageCode,
+    voiceId: defaultPreset.voiceId,
+    engine: defaultPreset.engine,
+  }
 
   while (true) {
+    const confirmContinue = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'continue',
+        message: 'Do you want to add another preset?',
+        default: false,
+      },
+    ])
+
+    if (!confirmContinue.continue) {
+      break
+    }
+
     const preset = await inquirer.prompt([
       {
         type: 'input',
@@ -144,32 +189,8 @@ export default async () => {
       languageCode: preset.languageCode,
       voiceId: preset.voiceId,
       engine: preset.engine,
-    }
-
-    const confirmDefault = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'isDefault',
-        message: 'Do you want to set this as the default preset?',
-        default: false,
-      },
-    ])
-
-    if (confirmDefault.isDefault) {
-      defaultLanguage = preset.name
-    }
-
-    const confirmContinue = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'continue',
-        message: 'Do you want to add another preset?',
-        default: false,
-      },
-    ])
-
-    if (!confirmContinue.continue) {
-      break
+      prefix: preset.prefix,
+      suffix: preset.suffix,
     }
   }
 
@@ -193,7 +214,7 @@ export default async () => {
     aws,
     prefix: prefixSuffix.prefix,
     suffix: prefixSuffix.suffix,
-    defaultPreset: defaultLanguage,
+    defaultPreset: defaultPreset.name,
     presets,
     replace: {},
   }
