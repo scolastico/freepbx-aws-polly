@@ -90,7 +90,7 @@ export default async () => {
       name: 'engine',
       message: 'Select the voice engine:',
       choices: ['standard', 'neural'],
-    }
+    },
   ])
 
   presets[defaultPreset.name] = {
